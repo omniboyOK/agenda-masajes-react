@@ -4,8 +4,9 @@ class Header extends Component {
     state = {  }
     render() { 
         return ( 
-            <header>
-                <h1 className="text-center">Bienvenido</h1>
+            <header className="text-center">
+                <img className="img-fluid" src="./banner.png"/>
+                <h1>Bienvenido</h1>
             </header>
          );
     }
