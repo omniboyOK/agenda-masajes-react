@@ -2,21 +2,42 @@ import React, { Component } from "react";
 
 class FormAppointment extends Component {
   state = {
-      cita: {
-          nombre: '',
-          apellido: '',
-          fecha: '',
-          hora: '',
-          aclaraciones: '',
-          zonas: {
-              espalda: false,
-              brazos: false,
-              cabeza: false,
-              piernas: false,
-              pecho: false
-          }
-      }
+    cita: {
+      nombre: "",
+      apellido: "",
+      fecha: "",
+      hora: "",
+      aclaraciones: "",
+      espalda: false,
+      brazos: false,
+      cabeza: false,
+      piernas: false,
+      pecho: false
+    }
   };
+
+  handleChange = e => {
+    this.setState({
+      cita: {
+        ...this.state.cita,
+        [e.target.name]: e.target.value
+      }
+    });
+
+    console.log(this.state);
+  };
+
+  handleSwitch = e => {
+    this.setState({
+      cita: {
+        ...this.state.cita,
+        [e.target.name]: e.target.checked
+      }
+    });
+
+    console.log(this.state);
+  };
+
   render() {
     return (
       <div className="card mt-5 py-5">
@@ -33,7 +54,9 @@ class FormAppointment extends Component {
                   type="text"
                   className="form-control"
                   placeholder="Nombre"
-                  name="Nombre"
+                  name="nombre"
+                  onChange={this.handleChange}
+                  value={this.state.cita.nombre}
                 />
               </div>
             </div>
@@ -47,7 +70,9 @@ class FormAppointment extends Component {
                   type="text"
                   className="form-control"
                   placeholder="Apellido"
-                  name="Apellido"
+                  name="apellido"
+                  onChange={this.handleChange}
+                  value={this.state.cita.apellido}
                 />
               </div>
             </div>
@@ -55,24 +80,80 @@ class FormAppointment extends Component {
             <div className="form-group row">
               <label className="col-sm-4 col-lg-2 col-form-label">Fecha</label>
               <div className="col-sm-8 col-lg-4">
-                <input type="date" className="form-control" name="Fecha" />
+                <input
+                  type="date"
+                  className="form-control"
+                  name="fecha"
+                  onChange={this.handleChange}
+                  value={this.state.cita.fecha}
+                />
               </div>
 
-              <label className="col-sm-4 col-lg-2 col-form-label">Nombre</label>
+              <label className="col-sm-4 col-lg-2 col-form-label">Hora</label>
               <div className="col-sm-8 col-lg-4">
-                <input type="time" className="form-control" name="Hora" />
+                <input
+                  type="time"
+                  className="form-control"
+                  name="hora"
+                  onChange={this.handleChange}
+                  value={this.state.cita.hora}
+                />
               </div>
             </div>
 
             <div className="form-group row">
-              <label className="col-sm-10 col-lg-10">Areas</label>
-              <div className="col-sm-2 col-lg-10">
-                Espalda
-                <input
-                  type="checkbox"
-                  className="form-control"
-                  name="Espalda"
-                />
+              <div className="col-sm-12 col-lg-12">
+                <label>Areas</label>
+                <div>
+                  <label>Espalda</label>
+                  <input
+                    type="checkbox"
+                    className="btn btn-default"
+                    name="espalda"
+                    onChange={this.handleSwitch}
+                    value={this.state.cita.espalda}
+                  />
+                </div>
+                <div>
+                  <label>Pecho</label>
+                  <input
+                    type="checkbox"
+                    className="btn btn-default"
+                    name="pecho"
+                    onChange={this.handleSwitch}
+                    value={this.state.cita.pecho}
+                  />
+                </div>
+                <div className="col-sm">
+                  <label>Piernas</label>
+                  <input
+                    type="checkbox"
+                    className="btn btn-default"
+                    name="piernas"
+                    onChange={this.handleSwitch}
+                    value={this.state.cita.piernas}
+                  />
+                </div>
+                <div className="col-sm">
+                  <label>Brazos</label>
+                  <input
+                    type="checkbox"
+                    className="btn btn-default"
+                    name="brazos"
+                    onChange={this.handleSwitch}
+                    value={this.state.cita.brazos}
+                  />
+                </div>
+                <div className="col-sm">
+                  <label>Cabeza</label>
+                  <input
+                    type="checkbox"
+                    className="btn btn-default"
+                    name="cabeza"
+                    onChange={this.handleSwitch}
+                    value={this.state.cita.cabeza}
+                  />
+                </div>
               </div>
             </div>
 
@@ -85,7 +166,9 @@ class FormAppointment extends Component {
                   type="text"
                   className="form-control"
                   placeholder="Escriba aqui.."
-                  name="Aclaraciones"
+                  name="aclaraciones"
+                  onChange={this.handleChange}
+                  checked={this.state.espalda}
                 />
               </div>
             </div>
@@ -94,6 +177,7 @@ class FormAppointment extends Component {
               type="submit"
               className="py-3 mt-2 btn btn-success btn-block"
               value="Confirmar cita"
+              onChange={this.handleChange}
             />
           </form>
         </div>
