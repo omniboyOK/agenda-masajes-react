@@ -1,7 +1,22 @@
 import React, { Component } from "react";
 
 class FormAppointment extends Component {
-  state = {};
+  state = {
+      cita: {
+          nombre: '',
+          apellido: '',
+          fecha: '',
+          hora: '',
+          aclaraciones: '',
+          zonas: {
+              espalda: false,
+              brazos: false,
+              cabeza: false,
+              piernas: false,
+              pecho: false
+          }
+      }
+  };
   render() {
     return (
       <div className="card mt-5 py-5">
