@@ -14,7 +14,7 @@ const defaultState = {
     piernas: false,
     pecho: false
   }
-}
+};
 
 class FormAppointment extends Component {
   state = { ...defaultState };
@@ -44,25 +44,24 @@ class FormAppointment extends Component {
     e.preventDefault();
 
     //generamos un nuevo objeto a partir de
-    const newAppointment = {...this.state.cita}
+    const newAppointment = { ...this.state.cita };
 
-    newAppointment.id = uuid()
+    newAppointment.id = uuid();
 
     //llamamos a la función padre que guardara nuestros datos
-    this.props.createAppointment(this.state.cita)
+    this.props.createAppointment(newAppointment);
 
     //volvemos el state a su estado inicial
-    this.setState({...defaultState})
+    this.setState({ ...defaultState });
   };
 
   render() {
     return (
-      <div className="card mt-5 py-5">
+      <div className="card mt-5">
+        <h2 className="card-header text-center mb-5">
+          Llena el formulario para reservar una cita
+        </h2>
         <div className="card-body">
-          <h2 className="card-title text-center mb-5">
-            Llena el formulario para reservar una cita
-          </h2>
-
           <form onSubmit={this.handleSubmit}>
             <div className="form-group row">
               <label className="col-sm-4 col-lg-2 col-form-label">Nombre</label>
@@ -189,7 +188,7 @@ class FormAppointment extends Component {
                   placeholder="Escriba aqui.."
                   name="aclaraciones"
                   onChange={this.handleChange}
-                  checked={this.state.espalda}
+                  value={this.state.cita.aclaraciones}
                 />
               </div>
             </div>
