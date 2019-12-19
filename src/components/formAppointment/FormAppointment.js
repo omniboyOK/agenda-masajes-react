@@ -59,7 +59,7 @@ class FormAppointment extends Component {
     return (
       <div className="card mt-5">
         <h2 className="card-header text-center mb-5">
-          Llena el formulario para reservar una reserva
+          Llena el formulario para crear una reserva
         </h2>
         <div className="card-body">
           <form onSubmit={this.handleSubmit}>
