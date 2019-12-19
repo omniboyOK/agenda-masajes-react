@@ -1,21 +1,25 @@
 import React, { Component } from "react";
+import uuid from "uuid";
+
+const defaultState = {
+  cita: {
+    nombre: "",
+    apellido: "",
+    fecha: "",
+    hora: "",
+    aclaraciones: "",
+    espalda: false,
+    brazos: false,
+    cabeza: false,
+    piernas: false,
+    pecho: false
+  }
+}
 
 class FormAppointment extends Component {
-  state = {
-    cita: {
-      nombre: "",
-      apellido: "",
-      fecha: "",
-      hora: "",
-      aclaraciones: "",
-      espalda: false,
-      brazos: false,
-      cabeza: false,
-      piernas: false,
-      pecho: false
-    }
-  };
+  state = { ...defaultState };
 
+  //Cuando el usuario cambia algun valor del formulario
   handleChange = e => {
     this.setState({
       cita: {
@@ -23,10 +27,9 @@ class FormAppointment extends Component {
         [e.target.name]: e.target.value
       }
     });
-
-    console.log(this.state);
   };
 
+  //Cuando el usuario cambia el valor de un checkbox
   handleSwitch = e => {
     this.setState({
       cita: {
@@ -34,8 +37,22 @@ class FormAppointment extends Component {
         [e.target.name]: e.target.checked
       }
     });
+  };
 
-    console.log(this.state);
+  //Cuando el usuario confirma el formulario
+  handleSubmit = e => {
+    e.preventDefault();
+
+    //generamos un nuevo objeto a partir de
+    const newAppointment = {...this.state.cita}
+
+    newAppointment.id = uuid()
+
+    //llamamos a la función padre que guardara nuestros datos
+    this.props.createAppointment(this.state.cita)
+
+    //volvemos el state a su estado inicial
+    this.setState({...defaultState})
   };
 
   render() {
@@ -46,7 +63,7 @@ class FormAppointment extends Component {
             Llena el formulario para reservar una cita
           </h2>
 
-          <form>
+          <form onSubmit={this.handleSubmit}>
             <div className="form-group row">
               <label className="col-sm-4 col-lg-2 col-form-label">Nombre</label>
               <div className="col-sm-8 col-lg-10">
@@ -57,6 +74,7 @@ class FormAppointment extends Component {
                   name="nombre"
                   onChange={this.handleChange}
                   value={this.state.cita.nombre}
+                  required
                 />
               </div>
             </div>
@@ -73,6 +91,7 @@ class FormAppointment extends Component {
                   name="apellido"
                   onChange={this.handleChange}
                   value={this.state.cita.apellido}
+                  required
                 />
               </div>
             </div>
@@ -86,6 +105,7 @@ class FormAppointment extends Component {
                   name="fecha"
                   onChange={this.handleChange}
                   value={this.state.cita.fecha}
+                  required
                 />
               </div>
 
@@ -97,6 +117,7 @@ class FormAppointment extends Component {
                   name="hora"
                   onChange={this.handleChange}
                   value={this.state.cita.hora}
+                  required
                 />
               </div>
             </div>
@@ -104,55 +125,55 @@ class FormAppointment extends Component {
             <div className="form-group row">
               <div className="col-sm-12 col-lg-12">
                 <label>Areas</label>
-                <div>
-                  <label>Espalda</label>
+                <div className="form-check">
                   <input
                     type="checkbox"
-                    className="btn btn-default"
+                    className="form-check-input"
                     name="espalda"
                     onChange={this.handleSwitch}
                     value={this.state.cita.espalda}
                   />
+                  <label>Espalda</label>
                 </div>
-                <div>
-                  <label>Pecho</label>
+                <div className="form-check">
                   <input
                     type="checkbox"
-                    className="btn btn-default"
+                    className="form-check-input"
                     name="pecho"
                     onChange={this.handleSwitch}
                     value={this.state.cita.pecho}
                   />
+                  <label>Pecho</label>
                 </div>
-                <div className="col-sm">
-                  <label>Piernas</label>
+                <div className="form-check">
                   <input
                     type="checkbox"
-                    className="btn btn-default"
+                    className="form-check-input"
                     name="piernas"
                     onChange={this.handleSwitch}
                     value={this.state.cita.piernas}
                   />
+                  <label>Piernas</label>
                 </div>
-                <div className="col-sm">
-                  <label>Brazos</label>
+                <div className="form-check">
                   <input
                     type="checkbox"
-                    className="btn btn-default"
+                    className="form-check-input"
                     name="brazos"
                     onChange={this.handleSwitch}
                     value={this.state.cita.brazos}
                   />
+                  <label>Brazos</label>
                 </div>
-                <div className="col-sm">
-                  <label>Cabeza</label>
+                <div className="form-check">
                   <input
                     type="checkbox"
-                    className="btn btn-default"
+                    className="form-check-input"
                     name="cabeza"
                     onChange={this.handleSwitch}
                     value={this.state.cita.cabeza}
                   />
+                  <label>Cabeza</label>
                 </div>
               </div>
             </div>
@@ -177,7 +198,6 @@ class FormAppointment extends Component {
               type="submit"
               className="py-3 mt-2 btn btn-success btn-block"
               value="Confirmar cita"
-              onChange={this.handleChange}
             />
           </form>
         </div>

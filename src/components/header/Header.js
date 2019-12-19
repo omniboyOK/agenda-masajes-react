@@ -5,7 +5,7 @@ class Header extends Component {
     render() { 
         return ( 
             <header className="text-center">
-                <img className="img-fluid" src="./banner.png"/>
+                <img className="img-fluid" src="./banner.png" alt="banner"/>
                 <h1>Bienvenido</h1>
             </header>
          );

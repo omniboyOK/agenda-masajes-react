@@ -4,7 +4,20 @@ import Header from "./components/header/Header";
 import Cita from "./components/formAppointment/FormAppointment";
 
 class App extends Component {
-  state = {};
+  state = {
+    citas : []
+  };
+
+  createAppointment = data => {
+    //copiamos el estado de nuestro arreglo de citas
+    const arr = [...this.state.citas, data]
+    //agregamos la cita a nuestro array
+    this.setState({
+      citas: arr
+    })
+
+    console.log(this.state.citas)
+  }
 
   render() {
     return (
@@ -12,7 +25,9 @@ class App extends Component {
         <Header />
         <div className="row">
           <div className="col-md-10 mx-auto">
-            <Cita />
+            <Cita 
+              createAppointment = {this.createAppointment}
+            />
           </div>
         </div>
       </div>
