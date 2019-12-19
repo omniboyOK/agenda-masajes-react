@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import uuid from "uuid";
 
 const defaultState = {
-  cita: {
+  reserva: {
     nombre: "",
     apellido: "",
     fecha: "",
@@ -22,8 +22,8 @@ class FormAppointment extends Component {
   //Cuando el usuario cambia algun valor del formulario
   handleChange = e => {
     this.setState({
-      cita: {
-        ...this.state.cita,
+      reserva: {
+        ...this.state.reserva,
         [e.target.name]: e.target.value
       }
     });
@@ -32,8 +32,8 @@ class FormAppointment extends Component {
   //Cuando el usuario cambia el valor de un checkbox
   handleSwitch = e => {
     this.setState({
-      cita: {
-        ...this.state.cita,
+      reserva: {
+        ...this.state.reserva,
         [e.target.name]: e.target.checked
       }
     });
@@ -44,7 +44,7 @@ class FormAppointment extends Component {
     e.preventDefault();
 
     //generamos un nuevo objeto a partir de
-    const newAppointment = { ...this.state.cita };
+    const newAppointment = { ...this.state.reserva };
 
     newAppointment.id = uuid();
 
@@ -59,7 +59,7 @@ class FormAppointment extends Component {
     return (
       <div className="card mt-5">
         <h2 className="card-header text-center mb-5">
-          Llena el formulario para reservar una cita
+          Llena el formulario para reservar una reserva
         </h2>
         <div className="card-body">
           <form onSubmit={this.handleSubmit}>
@@ -72,7 +72,7 @@ class FormAppointment extends Component {
                   placeholder="Nombre"
                   name="nombre"
                   onChange={this.handleChange}
-                  value={this.state.cita.nombre}
+                  value={this.state.reserva.nombre}
                   required
                 />
               </div>
@@ -89,7 +89,7 @@ class FormAppointment extends Component {
                   placeholder="Apellido"
                   name="apellido"
                   onChange={this.handleChange}
-                  value={this.state.cita.apellido}
+                  value={this.state.reserva.apellido}
                   required
                 />
               </div>
@@ -103,7 +103,7 @@ class FormAppointment extends Component {
                   className="form-control"
                   name="fecha"
                   onChange={this.handleChange}
-                  value={this.state.cita.fecha}
+                  value={this.state.reserva.fecha}
                   required
                 />
               </div>
@@ -115,7 +115,7 @@ class FormAppointment extends Component {
                   className="form-control"
                   name="hora"
                   onChange={this.handleChange}
-                  value={this.state.cita.hora}
+                  value={this.state.reserva.hora}
                   required
                 />
               </div>
@@ -130,7 +130,7 @@ class FormAppointment extends Component {
                     className="form-check-input"
                     name="espalda"
                     onChange={this.handleSwitch}
-                    value={this.state.cita.espalda}
+                    value={this.state.reserva.espalda}
                   />
                   <label>Espalda</label>
                 </div>
@@ -140,7 +140,7 @@ class FormAppointment extends Component {
                     className="form-check-input"
                     name="pecho"
                     onChange={this.handleSwitch}
-                    value={this.state.cita.pecho}
+                    value={this.state.reserva.pecho}
                   />
                   <label>Pecho</label>
                 </div>
@@ -150,7 +150,7 @@ class FormAppointment extends Component {
                     className="form-check-input"
                     name="piernas"
                     onChange={this.handleSwitch}
-                    value={this.state.cita.piernas}
+                    value={this.state.reserva.piernas}
                   />
                   <label>Piernas</label>
                 </div>
@@ -160,7 +160,7 @@ class FormAppointment extends Component {
                     className="form-check-input"
                     name="brazos"
                     onChange={this.handleSwitch}
-                    value={this.state.cita.brazos}
+                    value={this.state.reserva.brazos}
                   />
                   <label>Brazos</label>
                 </div>
@@ -170,7 +170,7 @@ class FormAppointment extends Component {
                     className="form-check-input"
                     name="cabeza"
                     onChange={this.handleSwitch}
-                    value={this.state.cita.cabeza}
+                    value={this.state.reserva.cabeza}
                   />
                   <label>Cabeza</label>
                 </div>
@@ -188,7 +188,7 @@ class FormAppointment extends Component {
                   placeholder="Escriba aqui.."
                   name="aclaraciones"
                   onChange={this.handleChange}
-                  value={this.state.cita.aclaraciones}
+                  value={this.state.reserva.aclaraciones}
                 />
               </div>
             </div>
@@ -196,7 +196,7 @@ class FormAppointment extends Component {
             <input
               type="submit"
               className="py-3 mt-2 btn btn-success btn-block"
-              value="Confirmar cita"
+              value="Confirmar Reserva"
             />
           </form>
         </div>
