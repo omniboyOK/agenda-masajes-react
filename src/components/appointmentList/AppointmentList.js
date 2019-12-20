@@ -8,11 +8,13 @@ const AppointmentList = ({ reservas, deleteAppointment }) => {
       <div className="card-body">
         <div>
           {reservas.map(reserva => {
-            return <AppointmentCard 
-                        key={reserva.id} 
-                        reserva={reserva}
-                        deleteAppointment={deleteAppointment}
-                        />;
+            return (
+              <AppointmentCard
+                key={reserva.id}
+                reserva={reserva}
+                deleteAppointment={deleteAppointment}
+              />
+            );
           })}
         </div>
       </div>

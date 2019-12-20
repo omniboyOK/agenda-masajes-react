@@ -11,17 +11,17 @@ class App extends Component {
   };
 
   //cuando cargamos nuestros componentes
-  componentDidMount(){
-    const reservas_localstorage = localStorage.getItem('reservas');
-    if(reservas_localstorage){
+  componentDidMount() {
+    const reservas_localstorage = localStorage.getItem("reservas");
+    if (reservas_localstorage) {
       this.setState({
         reservas: JSON.parse(reservas_localstorage)
-      })
+      });
     }
   }
   //cuando actualizamos nuestros componentes
-  componentDidUpdate(){
-    localStorage.setItem('reservas', JSON.stringify(this.state.reservas))
+  componentDidUpdate() {
+    localStorage.setItem("reservas", JSON.stringify(this.state.reservas));
   }
 
   //agrega reservas a nuestro state
@@ -43,8 +43,8 @@ class App extends Component {
     //filtramos por el id
     const updatedList = arr.filter(reservas => reservas.id !== id);
     //actualizamos el estado
-    this.setState({ 
-      reservas: updatedList 
+    this.setState({
+      reservas: updatedList
     });
   };
 
