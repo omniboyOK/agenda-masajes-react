@@ -10,6 +10,20 @@ class App extends Component {
     reservas: []
   };
 
+  //cuando cargamos nuestros componentes
+  componentDidMount(){
+    const reservas_localstorage = localStorage.getItem('reservas');
+    if(reservas_localstorage){
+      this.setState({
+        reservas: JSON.parse(reservas_localstorage)
+      })
+    }
+  }
+  //cuando actualizamos nuestros componentes
+  componentDidUpdate(){
+    localStorage.setItem('reservas', JSON.stringify(this.state.reservas))
+  }
+
   //agrega reservas a nuestro state
   createAppointment = data => {
     //copiamos el estado de nuestro arreglo de reservas
